@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CTRL3 | Cart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+      font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      color: #000000;
+    }
+    .main-header {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1.5px solid #cccccc;
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.3s;
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 30px;
+    }
+    .logo {
+      width: 70px;
+      border-radius: 12px;
+      margin-right: 15px;
+      border: 2px solid #333333;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .brand-title {
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #000000;
+    }
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a.active, .nav-links a:hover {
+      background: #f5f5f5;
+      color: #000000;
+    }
+    .cart-icon {
+      font-size: 1.5rem;
+      color: #000000;
+      position: relative;
+      cursor: pointer;
+      margin-left: 18px;
+      transition: color 0.2s;
+    }
+    .cart-icon span {
+      position: absolute;
+      top: -10px;
+      right: -12px;
+      background: #333333;
+      color: #fff;
+      font-size: 0.85rem;
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .cart-section {
+      max-width: 700px;
+      margin: 40px auto 30px auto;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.1);
+      padding: 32px 28px 24px 28px;
+      border: 2px solid #f5f5f5;
+    }
+    .cart-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: #000000;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .cart-items-list {
+      margin-bottom: 28px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #cccccc;
+      padding: 16px 0;
+      gap: 18px;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border: 1px solid #cccccc;
+    }
+    .cart-item-details {
+      flex: 1;
+    }
+    .cart-item-details p {
+      margin: 0 0 4px 0;
+      font-size: 1.08rem;
+    }
+    .cart-item-details strong {
+      font-size: 1.13rem;
+      color: #000000;
+    }
+    .cart-item-remove {
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 0.98rem;
+      margin-left: 10px;
+      transition: background 0.2s;
+    }
+    .cart-item-remove:hover {
+      background: #c0392b;
+    }
+    .cart-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .cart-total {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #000000;
+    }
+    .cart-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .cart-actions button {
+      background: linear-gradient(90deg, #333333 0%, #000000 100%);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 8px 20px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cart-actions button:hover {
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #333333;
+    }
+    .cart-actions .clear-btn {
+      background: #333333;
+      color: #fff;
+    }
+    .cart-actions .clear-btn:hover {
+      background: #000000;
+      color: #fff;
+      border: none;
+    }
+    .cart-actions .home-btn {
+      background: #333333;
+      color: #fff;
+    }
+    .cart-actions .home-btn:hover {
+      background: #000000;
+      color: #fff;
+      border: none;
+    }
+    @media (max-width: 600px) {
+      .cart-section {
+        padding: 16px 6px 12px 6px;
+      }
+      .header-content {
+        padding: 10px 8px;
+      }
+      .cart-title {
+        font-size: 1.3rem;
+      }
+      .cart-item img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <div style="display: flex; align-items: center;">
+        <img src="images/logo.jpg" alt="CTRL3 Logo" class="logo" />
+        <span class="brand-title">CTRL3</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html"><i class="fa fa-home"></i> Home</a>
+        <a href="tshirts.html"><i class="fa fa-tshirt"></i> T-Shirts</a>
+        <a href="pants.html"><i class="fa fa-user-tie"></i> Pants</a>
+        <a href="shorts.html"><i class="fa fa-person-running"></i> Shorts</a>
+        <a href="cart.html" class="active"><i class="fa fa-shopping-cart"></i> Cart</a>
+      </nav>
+      <a href="cart.html" class="cart-icon" title="Shopping Cart"><i class="fa fa-shopping-cart"></i><span id="cart-count">0</span></a>
+    </div>
+  </header>
+
+  <section class="cart-section">
+    <div class="cart-title"><i class="fa fa-shopping-cart"></i> Shopping Cart</div>
+    <div id="cart-items" class="cart-items-list"></div>
+    <div class="cart-summary">
+      <span class="cart-total">Total: <span id="total-price">0.00 EGP</span></span>
+      <div class="cart-actions">
+        <button id="checkout-button" onclick="checkout()"><i class="fa fa-credit-card"></i> Checkout</button>
+        <button class="clear-btn" onclick="clearCart()"><i class="fa fa-trash"></i> Clear Cart</button>
+        <button class="home-btn" onclick="goHome()"><i class="fa fa-home"></i> Home</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" style="background: #ffffff; color: #000000; text-align: center; padding: 18px 0; margin-top: 40px; border-top: 2px solid #333333;">
+    &copy; CTRL3 2024 &mdash; 
+    <a href="index.html" style="color: #000000;">Home</a> |
+    <a href="tshirts.html" style="color: #000000;">T-Shirts</a> |
+    <a href="pants.html" style="color: #000000;">Pants</a> |
+    <a href="shorts.html" style="color: #000000;">Shorts</a>
+  </footer>
+
+  <script>
+    function renderCart() {
+      const cartItems = document.getElementById("cart-items");
+      const totalPriceEl = document.getElementById("total-price");
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      console.log("Cart items:", cart); // للتشخيص
+      cartItems.innerHTML = "";
+      let total = 0;
+      if (cart.length === 0) {
+        cartItems.innerHTML = `<div style="text-align:center; color:#888; font-size:1.1rem; padding: 30px 0;">Your cart is empty</div>`;
+      } else {
+        cart.forEach((product, index) => {
+          console.log(`Rendering product ${index}:`, product); // للتشخيص
+          const item = document.createElement("div");
+          item.className = "cart-item";
+          
+          const img = document.createElement("img");
+          img.src = product.image;
+          img.alt = product.name;
+          img.style.cssText = "width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #cccccc;";
+          img.onerror = function() {
+            console.log(`Failed to load image: ${product.image}`);
+            this.src = "images/logo.jpg";
+          };
+          
+          const details = document.createElement("div");
+          details.className = "cart-item-details";
+          details.innerHTML = `
+            <p><strong>${product.name}</strong></p>
+            <p>${product.price.toFixed(2)} EGP</p>
+          `;
+          
+          const removeBtn = document.createElement("button");
+          removeBtn.className = "cart-item-remove";
+          removeBtn.innerHTML = "<i class='fa fa-times'></i>";
+          removeBtn.onclick = () => removeFromCart(index);
+          
+          item.appendChild(img);
+          item.appendChild(details);
+          item.appendChild(removeBtn);
+          cartItems.appendChild(item);
+          
+          total += product.price;
+        });
+      }
+      totalPriceEl.textContent = `${total.toFixed(2)} EGP`;
+      // Update cart count in header
+      let countEls = document.querySelectorAll("#cart-count");
+      countEls.forEach(el => el.textContent = cart.length);
+    }
+
+    function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function clearCart() {
+      if (confirm("Are you sure you want to remove all items from the cart?")) {
+        localStorage.removeItem("cart");
+        renderCart();
+      }
+    }
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
+
+    function checkout() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your order! We will contact you soon to complete your purchase.");
+      clearCart();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderCart);
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

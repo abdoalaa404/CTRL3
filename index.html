@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CTRL3 | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+      --header-bg: #ffffff;
+      --primary: #000000;
+      --accent: #333333;
+      --accent-dark: #000000;
+      --accent-light: #f5f5f5;
+      --border: #cccccc;
+      --card-bg: #ffffff;
+      --footer-bg: #ffffff;
+      --footer-text: #000000;
+      --button-bg: linear-gradient(90deg, #333333 0%, #000000 100%);
+      --button-text: #fff;
+      --button-hover: #fff;
+      --button-hover-text: #000000;
+      --shadow: 0 8px 32px 0 rgba(0,0,0,0.1);
+      --glass-bg: rgba(255,255,255,0.95);
+      --glass-blur: blur(8px);
+    }
+    body {
+      font-family: 'Cairo', 'Roboto', Arial, sans-serif;
+      background: var(--main-bg);
+      margin: 0;
+      color: var(--primary);
+    }
+    .main-header {
+      background: var(--header-bg);
+      border-bottom: 2px solid #333333;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+    .logo {
+      width: 54px;
+      border-radius: 50%;
+      margin-right: 14px;
+      border: 2px solid #333333;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .brand-title {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #000000;
+      text-transform: uppercase;
+      font-family: 'Cairo', Arial, sans-serif;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #000000;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 12px;
+      padding: 6px 14px;
+      border-radius: 5px;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .nav-links a.active,
+    .nav-links a:hover {
+      background: #f5f5f5;
+      color: #000000;
+    }
+    .cart-icon {
+      font-size: 1.5rem;
+      color: #000000;
+      background: #f5f5f5;
+      border-radius: 50%;
+      padding: 10px;
+      margin-left: 18px;
+      border: 1.5px solid #333333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cart-icon:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+    .hero-section {
+      max-width: 1100px;
+      margin: 40px auto 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 0 0 40px 0;
+    }
+    .hero-image {
+      width: 340px;
+      max-width: 90vw;
+      border-radius: 50%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      object-fit: cover;
+      border: 3px solid #333333;
+      background: #f5f5f5;
+    }
+    .hero-content {
+      max-width: 480px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      padding: 32px 28px;
+      border-left: 5px solid #333333;
+      text-align: left;
+      direction: ltr;
+    }
+    .hero-content h2 {
+      font-size: 2rem;
+      color: #000000;
+      margin-bottom: 18px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 28px;
+      line-height: 1.7;
+      opacity: 0.95;
+    }
+    .shop-btn {
+      background: linear-gradient(90deg, #333333 0%, #000000 100%);
+      color: var(--button-text);
+      border: none;
+      border-radius: 8px;
+      padding: 13px 36px;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      transition: background 0.2s, color 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .shop-btn:hover {
+      background: #ffffff;
+      color: #000000;
+      border: 2px solid #333333;
+    }
+    .lookbook-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 40px auto 0 auto;
+      max-width: 1000px;
+      flex-wrap: wrap;
+    }
+    .lookbook-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      border: 2px solid #f5f5f5;
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .lookbook-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 2px solid #cccccc;
+      border-radius: 18px 18px 0 0;
+    }
+    .lookbook-caption {
+      padding: 14px 0 8px 0;
+    }
+    .lookbook-caption h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.1rem;
+      color: #000000;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .lookbook-caption span {
+      color: var(--primary);
+      font-size: 0.98rem;
+      opacity: 0.8;
+      font-weight: 600;
+    }
+    .divider {
+      border: none;
+      border-top: 2px solid #333333;
+      margin: 40px auto 30px auto;
+      max-width: 800px;
+    }
+    .products-section {
+      max-width: 1100px;
+      margin: 0 auto 60px auto;
+      padding: 0 12px;
+    }
+    .products-title {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #000000;
+      margin-bottom: 28px;
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .products-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      padding: 18px 10px 22px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid #f5f5f5;
+      width: 220px;
+      margin-bottom: 12px;
+    }
+    .product-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #cccccc;
+      background: #f5f5f5;
+    }
+    .product-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 6px;
+      letter-spacing: 0.2px;
+    }
+    .product-price {
+      color: #333333;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1px;
+    }
+    .product-card button {
+      background: linear-gradient(90deg, #333333 0%, #000000 100%);
+      color: var(--button-text);
+      border: none;
+      border-radius: 7px;
+      padding: 8px 20px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .product-card button:hover {
+      background: #ffffff;
+      color: #000000;
+      border: 2px solid #333333;
+    }
+    .cart-message {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: linear-gradient(90deg, #333333 0%, #000000 100%);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 800;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 999;
+      transition: opacity 0.3s;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-message.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 20px 0 16px 0;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      margin-top: 40px;
+      border-top: 2px solid #333333;
+    }
+    .footer a {
+      color: var(--footer-text);
+      text-decoration: underline;
+      margin: 0 8px;
+      transition: color 0.2s;
+      font-weight: 700;
+    }
+    .footer a:hover {
+      color: #333333;
+      text-decoration: none;
+    }
+    /* Discount Section Styles */
+    .discount-section {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+      margin: 40px auto;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(238, 90, 82, 0.3);
+      overflow: hidden;
+      max-width: 1100px;
+    }
+    .discount-container {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .discount-header {
+      position: relative;
+      margin-bottom: 30px;
+    }
+    .discount-title {
+      font-size: 2.2rem;
+      color: #ffffff;
+      font-weight: 900;
+      margin: 0 0 10px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: 1px;
+    }
+    .discount-subtitle {
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin: 0;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+    .discount-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #000000;
+      color: #ffffff;
+      font-size: 1.8rem;
+      font-weight: 900;
+      padding: 15px 20px;
+      border-radius: 50%;
+      transform: rotate(15deg);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      border: 3px solid #ffffff;
+    }
+    .discount-products {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .discount-product-card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 250px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid #ffffff;
+    }
+    .discount-product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .discount-product-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #f0f0f0;
+    }
+    .discount-product-info h3 {
+      font-size: 1.2rem;
+      color: #000000;
+      margin: 0 0 10px 0;
+      font-weight: 800;
+    }
+    .price-container {
+      margin: 15px 0;
+    }
+    .original-price {
+      text-decoration: line-through;
+      color: #999999;
+      font-size: 1rem;
+      margin-right: 10px;
+      font-weight: 600;
+    }
+    .discount-price {
+      color: #ff6b6b;
+      font-size: 1.3rem;
+      font-weight: 900;
+    }
+    .discount-btn {
+      background: linear-gradient(90deg, #ff6b6b 0%, #ee5a52 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 auto;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(238, 90, 82, 0.3);
+    }
+    .discount-btn:hover {
+      background: linear-gradient(90deg, #ee5a52 0%, #ff6b6b 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(238, 90, 82, 0.4);
+    }
+    @media (max-width: 900px) {
+      .header-content, .hero-section, .products-section, .discount-section {
+        max-width: 98vw;
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+      .hero-section {
+        flex-direction: column;
+        gap: 24px;
+        padding: 30px 0 18px 0;
+      }
+      .hero-image {
+        width: 80vw;
+      }
+      .lookbook-gallery, .products-grid {
+        gap: 12px;
+      }
+      .discount-title {
+        font-size: 1.8rem;
+      }
+      .discount-products {
+        gap: 20px;
+      }
+      .discount-product-card {
+        width: 220px;
+      }
+    }
+    @media (max-width: 600px) {
+      .header-content {
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px 2px;
+      }
+      .hero-section {
+        padding: 10px 0 4px 0;
+      }
+      .hero-content {
+        padding: 12px 6px;
+      }
+      .hero-content h2 {
+        font-size: 1.1rem;
+      }
+      .products-title {
+        font-size: 0.95rem;
+      }
+      .lookbook-card, .product-card {
+        min-width: 0;
+        width: 100%;
+      }
+      .lookbook-card img, .product-card img {
+        height: 90px;
+      }
+      .discount-title {
+        font-size: 1.5rem;
+      }
+      .discount-subtitle {
+        font-size: 1rem;
+      }
+      .discount-product-card {
+        width: 100%;
+        max-width: 280px;
+      }
+      .discount-product-card img {
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <div style="display: flex; align-items: center;">
+        <img src="images/logo.jpg" alt="CTRL3 Logo" class="logo" />
+        <span class="brand-title">CTRL3</span>
+      </div>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="index.html" class="active"><i class="fa fa-home"></i> Home</a>
+        <a href="tshirts.html"><i class="fa fa-tshirt"></i> T-Shirts</a>
+        <a href="pants.html"><i class="fa fa-user-tie"></i> Pants</a>
+        <a href="shorts.html"><i class="fa fa-person-running"></i> Shorts</a>
+      </nav>
+      <a href="cart.html" class="cart-icon" title="Shopping Cart" aria-label="Shopping Cart"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <img src="images/hero-banner.jpg" alt="CTRL3 Fashion Banner" class="hero-image" loading="lazy">
+    <div class="hero-content">
+      <h2>Discover Your Style with the New CTRL3 Collection</h2>
+      <p>
+        Add a modern touch to your look with the best men's t-shirts, pants, and shorts.<br>
+        Premium fabrics, stylish designs, and competitive prices.<br>
+        Shop now and stand out from the crowd.
+      </p>
+      <a href="tshirts.html" class="shop-btn"><i class="fa fa-arrow-right"></i> Shop Now</a>
+    </div>
+  </section>
+
+ 
+
+  <hr class="divider">
+
+  <!-- Discount Section -->
+  <section class="discount-section" aria-label="Special Discount Offer">
+    <div class="discount-container">
+      <div class="discount-header">
+        <h2 class="discount-title">خصم خاص 20% على التيشيرتات!</h2>
+        <p class="discount-subtitle">عرض محدود - احصل على التيشيرتات بخصم كبير</p>
+        <div class="discount-badge">-20%</div>
+      </div>
+      <div class="discount-products">
+        <div class="discount-product-card">
+          <img src="images/b1.jbg.jpg" alt="تيشيرت أحمر بخصم" loading="lazy">
+          <div class="discount-product-info">
+            <h3>تيشيرت أحمر</h3>
+            <div class="price-container">
+              <span class="original-price">EGP 400</span>
+              <span class="discount-price">EGP 320</span>
+            </div>
+            <button onclick="addToCart('Red T-Shirt (Discounted)', 'images/b1.jbg.jpg', 320)" class="discount-btn">
+              <i class="fa fa-cart-plus"></i> أضف للسلة
+            </button>
+          </div>
+        </div>
+        <div class="discount-product-card">
+          <img src="images/b2.jbg.jpg" alt="تيشيرت أبيض بخصم" loading="lazy">
+          <div class="discount-product-info">
+            <h3>تيشيرت أبيض</h3>
+            <div class="price-container">
+              <span class="original-price">EGP 400</span>
+              <span class="discount-price">EGP 320</span>
+            </div>
+            <button onclick="addToCart('White T-Shirt (Discounted)', 'images/b2.jbg.jpg', 320)" class="discount-btn">
+              <i class="fa fa-cart-plus"></i> أضف للسلة
+            </button>
+          </div>
+        </div>
+        <div class="discount-product-card">
+          <img src="images/b4.jpg" alt="تيشيرت أسود بخصم" loading="lazy">
+          <div class="discount-product-info">
+            <h3>تيشيرت أسود</h3>
+            <div class="price-container">
+              <span class="original-price">EGP 400</span>
+              <span class="discount-price">EGP 320</span>
+            </div>
+            <button onclick="addToCart('Black T-Shirt (Discounted)', 'images/b4.jpg', 320)" class="discount-btn">
+              <i class="fa fa-cart-plus"></i> أضف للسلة
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="products-section" aria-label="Featured Products">
+    <div class="products-title">Featured Products</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="images/j1.jpg" alt="White T-Shirt" loading="lazy">
+        <div class="product-name">White T-Shirt</div>
+        <div class="product-price">EGP 400</div>
+        <button onclick="addToCart('White T-Shirt', 'images/j1.jpg', 400)" aria-label="Add White T-Shirt to cart">
+          <i class="fa fa-cart-plus"></i> Add to Cart
+        </button>
+      </div>
+      <div class="product-card">
+        <img src="images/p1.jpg" alt="Black Pants" loading="lazy">
+        <div class="product-name">Black Pants</div>
+        <div class="product-price">EGP 500</div>
+        <button onclick="addToCart('Black Pants', 'images/p1.jpg', 500)" aria-label="Add Black Pants to cart">
+          <i class="fa fa-cart-plus"></i> Add to Cart
+        </button>
+      </div>
+      <div class="product-card">
+        <img src="images/s1.jpg" alt="White Shorts" loading="lazy">
+        <div class="product-name">White Shorts</div>
+        <div class="product-price">EGP 300</div>
+        <button onclick="addToCart('White Shorts', 'images/s1.jpg', 300)" aria-label="Add White Shorts to cart">
+          <i class="fa fa-cart-plus"></i> Add to Cart
+        </button>
+      </div>
+      <div class="product-card">
+        <img src="images/j2.jpg" alt="Blue T-Shirt" loading="lazy">
+        <div class="product-name">Blue T-Shirt</div>
+        <div class="product-price">EGP 400</div>
+        <button onclick="addToCart('Blue T-Shirt', 'images/j2.jpg', 400)" aria-label="Add Blue T-Shirt to cart">
+          <i class="fa fa-cart-plus"></i> Add to Cart
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div id="cart-msg" class="cart-message" role="status" aria-live="polite"><i class="fa fa-check-circle"></i> Product added to cart</div>
+
+  <footer class="footer">
+    &copy; CTRL3 2024 &mdash; 
+    <a href="index.html">Home</a> |
+    <a href="tshirts.html">T-Shirts</a> |
+    <a href="pants.html">Pants</a> |
+    <a href="shorts.html">Shorts</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

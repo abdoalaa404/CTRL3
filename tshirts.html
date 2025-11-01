@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CTRL3 | T-Shirts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+      --header-bg: #ffffff;
+      --primary: #000000;
+      --accent: #333333;
+      --accent-dark: #000000;
+      --accent-light: #f5f5f5;
+      --border: #cccccc;
+      --card-bg: #ffffff;
+      --footer-bg: #ffffff;
+      --footer-text: #000000;
+      --button-bg: linear-gradient(90deg, #333333 0%, #000000 100%);
+      --button-text: #fff;
+      --button-hover: #fff;
+      --button-hover-text: #000000;
+      --shadow: 0 8px 32px 0 rgba(0,0,0,0.1);
+      --glass-bg: rgba(255,255,255,0.95);
+      --glass-blur: blur(8px);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+      background: var(--main-bg);
+      min-height: 100vh;
+      margin: 0;
+      color: var(--primary);
+      position: relative;
+      overflow-x: hidden;
+    }
+    .main-header {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border-bottom: 1.5px solid var(--border);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.3s;
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 28px;
+    }
+    .logo {
+      width: 60px;
+      border-radius: 14px;
+      margin-right: 18px;
+      border: 2px solid #333333;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .logo:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    }
+    .brand-title {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #000000;
+      letter-spacing: 2px;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: color 0.2s;
+    }
+    .brand-title:hover {
+      color: #333333;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #000000;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 12px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0);
+    }
+    .nav-links a.active, .nav-links a:hover {
+      background: linear-gradient(90deg, #f5f5f5 0%, #e0e0e0 100%);
+      color: #000000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    .cart-icon {
+      font-size: 1.7rem;
+      color: #000000;
+      background: #f5f5f5;
+      border-radius: 50%;
+      padding: 12px;
+      margin-left: 14px;
+      border: 2px solid #333333;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .cart-icon:hover {
+      background: #000000;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .hero-section {
+      background: linear-gradient(120deg, #ffffff 0%, #f5f5f5 100%);
+      padding: 70px 0 50px 0;
+      text-align: center;
+      margin-bottom: 0;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: -50px; left: -50px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(0,0,0,0.05) 80%, transparent 100%);
+      z-index: 0;
+      filter: blur(18px);
+    }
+    .hero-section h2 {
+      font-size: 2.7rem;
+      color: var(--accent-dark);
+      margin-bottom: 18px;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      text-shadow: 0 4px 24px #4ea8de22;
+      position: relative;
+      z-index: 1;
+      animation: fadeInDown 1s cubic-bezier(.77,0,.18,1.01);
+    }
+    .hero-section p {
+      color: #1976d2;
+      font-size: 1.2rem;
+      margin-bottom: 0;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      font-family: 'Roboto', sans-serif;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1.2s cubic-bezier(.77,0,.18,1.01);
+    }
+    .hero-section .hero-highlight {
+      color: #fff;
+      background: linear-gradient(90deg, #333333 0%, #000000 100%);
+      padding: 10px 28px;
+      border-radius: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    .hero-section .hero-desc {
+      background: rgba(255,255,255,0.92);
+      padding: 10px 22px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      color: #000000;
+    }
+    .hero-section .hero-desc span {
+      color: #333333;
+      font-weight: 700;
+    }
+    .hero-desc {
+      display: block;
+      margin-top: 15px;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .lookbook-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 36px;
+      max-width: 1200px;
+      margin: 50px auto 50px auto;
+      padding: 0 24px;
+    }
+    .lookbook-card {
+      background: var(--glass-bg);
+      border-radius: 22px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      overflow: hidden;
+      border: 2px solid #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      transition: box-shadow 0.2s, border 0.2s, transform 0.2s;
+      position: relative;
+      cursor: pointer;
+      min-height: 420px;
+    }
+    .lookbook-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+      border: 2px solid #333333;
+      transform: translateY(-6px) scale(1.03);
+    }
+    .lookbook-card img {
+      width: 100%;
+      height: 340px;
+      object-fit: contain;
+      object-position: center top;
+      border-bottom: 2px solid var(--border);
+      filter: grayscale(0%) contrast(1.04) brightness(1.12);
+      transition: filter 0.3s, transform 0.3s;
+      background: #f8fafc;
+      display: block;
+    }
+    .lookbook-card:hover img {
+      filter: grayscale(0%) contrast(1.15) brightness(1.15) saturate(1.08);
+      transform: scale(1.03);
+    }
+    .lookbook-caption {
+      padding: 22px 10px 18px 10px;
+      text-align: center;
+      background: rgba(255,255,255,0.96);
+      position: relative;
+      z-index: 1;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .lookbook-caption h3 {
+      font-size: 1.25rem;
+      color: #000000;
+      margin: 0 0 8px 0;
+      font-weight: 900;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .lookbook-caption span {
+      font-size: 1.08rem;
+      color: var(--primary);
+      font-weight: 600;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 0.7px;
+    }
+    .divider {
+      border: none;
+      border-top: 2px solid #333333;
+      margin: 44px auto 44px auto;
+      width: 70%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    .products-section {
+      background: var(--glass-bg);
+      border-radius: 28px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      max-width: 1200px;
+      margin: 0 auto 50px auto;
+      padding: 48px 24px 48px 24px;
+      border: 2px solid #f5f5f5;
+      position: relative;
+      z-index: 1;
+    }
+    .products-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #000000;
+      font-weight: 900;
+      margin-bottom: 36px;
+      letter-spacing: 2.5px;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      justify-items: center;
+    }
+    .product-card {
+      background: linear-gradient(120deg, #ffffff 60%, #f5f5f5 100%);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      padding: 28px 16px 22px 16px;
+      text-align: center;
+      width: 100%;
+      max-width: 270px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid #f5f5f5;
+      transition: box-shadow 0.2s, border 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+      min-height: 370px;
+    }
+    .product-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+      border: 2px solid #333333;
+      transform: translateY(-6px) scale(1.04);
+    }
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      object-position: center top;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      background: #f8fafc;
+      border: 2px solid #e0e0e0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: filter 0.3s, transform 0.3s;
+      filter: grayscale(0%) contrast(1.04) brightness(1.12);
+      display: block;
+    }
+    .product-card:hover img {
+      filter: grayscale(0%) contrast(1.15) brightness(1.15) saturate(1.08);
+      transform: scale(1.04);
+    }
+    .product-card .product-name {
+      font-size: 1.15rem;
+      color: #000000;
+      font-weight: 900;
+      margin-bottom: 10px;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .product-card .product-price {
+      color: #333333;
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 0.8px;
+    }
+    .product-card button {
+      padding: 10px 28px;
+      background: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      border-radius: 10px;
+      font-size: 1.08rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px #4ea8de11;
+      letter-spacing: 0.8px;
+      outline: none;
+    }
+    .product-card button:hover, .product-card button:focus {
+      background: var(--button-hover);
+      color: var(--button-hover-text);
+      box-shadow: 0 4px 16px #4ea8de33;
+      transform: scale(1.06);
+      border: 2px solid var(--accent);
+    }
+    .cart-message {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      background: linear-gradient(90deg, #333333 0%, #000000 100%);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      font-size: 1.08rem;
+      display: none;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      font-weight: 900;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 1.2px;
+      animation: popIn 0.5s;
+    }
+    .cart-message.show {
+      display: block;
+      opacity: 1;
+      transform: scale(1.06);
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8);}
+      to { opacity: 1; transform: scale(1.06);}
+    }
+    .footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 24px 0 14px 0;
+      font-size: 1.08rem;
+      margin-top: 44px;
+      letter-spacing: 1.2px;
+      font-family: 'Montserrat', sans-serif;
+      border-top-left-radius: 28px;
+      border-top-right-radius: 28px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
+    }
+    .footer a {
+      color: #000000;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 1.08rem;
+      transition: color 0.2s, text-shadow 0.2s;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .footer a:hover {
+      color: #333333;
+      text-decoration: underline;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    /* Responsive Design */
+    @media (max-width: 1100px) {
+      .lookbook-gallery, .products-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+      .lookbook-card img, .product-card img { height: 180px; }
+      .products-section { padding: 18px 6px 18px 6px; }
+    }
+    @media (max-width: 900px) {
+      .header-content { flex-direction: column; gap: 14px; padding: 14px 6px; }
+      .brand-title { font-size: 1.3rem; }
+      .lookbook-gallery, .products-grid { grid-template-columns: 1fr; gap: 14px; }
+      .lookbook-card img, .product-card img { height: 140px; }
+      .products-section { padding: 10px 2px 10px 2px; }
+      .footer { font-size: 1rem; padding: 12px 0 8px 0; }
+      .cart-message { left: 8px; bottom: 8px; padding: 8px 14px; font-size: 1rem; }
+    }
+    @media (max-width: 600px) {
+      .header-content { flex-direction: column; gap: 8px; padding: 8px 2px; }
+      .brand-title { font-size: 1rem; }
+      .lookbook-gallery, .products-grid { grid-template-columns: 1fr; gap: 8px; }
+      .lookbook-card img, .product-card img { height: 90px; }
+      .products-section { padding: 6px 1px 6px 1px; }
+      .footer { font-size: 0.95rem; padding: 8px 0 4px 0; }
+      .cart-message { left: 2px; bottom: 2px; padding: 6px 8px; font-size: 0.95rem; }
+    }
+    /* Decorative floating shapes */
+    .floating-shape {
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.10;
+      filter: blur(2px);
+      animation: floatShape 8s infinite alternate ease-in-out;
+    }
+    .floating-shape.shape1 {
+      top: 40px; left: 2vw;
+      width: 90px; height: 90px;
+      background: radial-gradient(circle, #333333 60%, transparent 100%);
+      border-radius: 50%;
+      animation-delay: 0s;
+    }
+    .floating-shape.shape2 {
+      bottom: 80px; right: 4vw;
+      width: 70px; height: 70px;
+      background: radial-gradient(circle, #000000 60%, transparent 100%);
+      border-radius: 50%;
+      animation-delay: 2s;
+    }
+    .floating-shape.shape3 {
+      top: 40%; left: 80vw;
+      width: 40px; height: 40px;
+      background: radial-gradient(circle, #f5f5f5 60%, transparent 100%);
+      border-radius: 50%;
+      animation-delay: 4s;
+    }
+    @keyframes floatShape {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(-18px) scale(1.07);}
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-shape shape1"></div>
+  <div class="floating-shape shape2"></div>
+  <div class="floating-shape shape3"></div>
+  <header class="main-header">
+    <div class="header-content">
+      <div style="display: flex; align-items: center;">
+        <img src="images/logo.jpg" alt="CTRL3 Logo" class="logo" />
+        <span class="brand-title">CTRL3</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html"><i class="fa fa-home"></i> Home</a>
+        <a href="tshirts.html" class="active"><i class="fa fa-tshirt"></i> T-Shirts</a>
+        <a href="pants.html"><i class="fa fa-user-tie"></i> Pants</a>
+        <a href="shorts.html"><i class="fa fa-person-running"></i> Shorts</a>
+      </nav>
+      <a href="cart.html" class="cart-icon" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <h2>
+      <span class="hero-highlight">T-Shirts Collection</span>
+    </h2>
+            <p class="hero-desc">Simple. Elegant. Everyday style for everyone.</p>    <p class="hero-desc"><span>Discover your new favorite look!</span></p>
+  </section>
+
+  <section>
+    <div class="lookbook-gallery">
+      <div class="lookbook-card">
+        <img src="images/model1.jpg" alt="White T-Shirt Model">
+        <div class="lookbook-caption">
+          <h3>White</h3>
+          <span>Clean &amp; Timeless</span>
+        </div>
+      </div>
+      <div class="lookbook-card">
+        <img src="images/model2.jpg" alt="Black T-Shirt Model">
+        <div class="lookbook-caption">
+          <h3>gray</h3>
+          <span>Modern &amp; Bold</span>
+        </div>
+      </div>
+      <div class="lookbook-card">
+        <img src="images/model3.jpg" alt="Blue Graphic T-Shirt">
+        <div class="lookbook-caption">
+          <h3>Black</h3>
+          <span>Fresh &amp; Trendy</span>
+        </div>
+      </div>
+      <div class="lookbook-card">
+        <img src="images/model4.jpg" alt="Classic T-Shirt Model">
+        <div class="lookbook-caption">
+          <h3>white</h3>
+          <span>Minimal &amp; Stylish</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="products-section">
+    <div class="products-title">T-Shirts</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="images/b1.jbg.jpg" alt="Classic White T-Shirt">
+        <div class="product-name">White T-Shirt</div>
+        <div class="product-price">400 EGP</div>
+        <button onclick="addToCart('White T-Shirt', 'images/b1.jbg.jpg', 400)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+      <div class="product-card">
+        <img src="images/b2.jbg.jpg" alt="Red T-Shirt">
+        <div class="product-name">Red T-Shirt</div>
+        <div class="product-price">400 EGP</div>
+        <button onclick="addToCart('Red T-Shirt', 'images/b2.jbg.jpg', 400)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+      <div class="product-card">
+        <img src="images/b3.jpg" alt="Blue T-Shirt">
+        <div class="product-name">Blue T-Shirt</div>
+        <div class="product-price">400 EGP</div>
+        <button onclick="addToCart('Blue T-Shirt', 'images/b3.jpg', 400)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+      <div class="product-card">
+        <img src="images/b4.jpg" alt="Black T-Shirt">
+        <div class="product-name">Black T-Shirt</div>
+        <div class="product-price">400 EGP</div>
+        <button onclick="addToCart('Black T-Shirt', 'images/b4.jpg', 400)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/p1.jpg" alt="Black T-Shirt">
+        <div class="product-name">Black T-Shirt</div>
+        <div class="product-price">370 EGP</div>
+        <button onclick="addToCart('Black T-Shirt', 'images/p1.jpg', 370)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/p2.jpg" alt="Black T-Shirt">
+        <div class="product-name">Black T-Shirt</div>
+        <div class="product-price">370 EGP</div>
+        <button onclick="addToCart('Black T-Shirt', 'images/p2.jpg', 370)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+
+
+      <div class="product-card">
+        <img src="images/p3.jpg" alt="Black T-Shirt">
+        <div class="product-name">Black T-Shirt</div>
+        <div class="product-price">370 EGP</div>
+        <button onclick="addToCart('Black T-Shirt', 'images/p3.jpg', 370)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+
+
+      <div class="product-card">
+        <img src="images/p4.jbg.jpg" alt="Black T-Shirt">
+        <div class="product-name">Black T-Shirt</div>
+        <div class="product-price">370 EGP</div>
+        <button onclick="addToCart('Black T-Shirt', 'images/p4.jbg.jpg', 370)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/o1.jpg" alt="Black T-Shirt">
+        <div class="product-name">Black T-Shirt</div>
+        <div class="product-price">370 EGP</div>
+        <button onclick="addToCart('Black T-Shirt', 'images/o1.jpg', 370)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/o2.jpg" alt="Black T-Shirt">
+        <div class="product-name">Black T-Shirt</div>
+        <div class="product-price">370 EGP</div>
+        <button onclick="addToCart('Black T-Shirt', 'images/o2.jpg', 370)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/o3.jpg" alt="Black T-Shirt">
+        <div class="product-name">Black T-Shirt</div>
+        <div class="product-price">370 EGP</div>
+        <button onclick="addToCart('Black T-Shirt', 'images/o3.jpg', 370)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/o4.jpg" alt="Black T-Shirt">
+        <div class="product-name">Black T-Shirt</div>
+        <div class="product-price">370 EGP</div>
+        <button onclick="addToCart('Black T-Shirt', 'images/o4.jpg', 370)">
+          <i class="fa fa-cart-plus"></i> Add
+        </button>
+      </div>
+
+
+
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <div id="cart-msg" class="cart-message">✔️ Product added to cart</div>
+
+  <footer class="footer">
+    &copy; CTRL3 2024 &mdash; 
+    <a href="index.html">Home</a> |
+    <a href="tshirts.html">T-Shirts</a> |
+    <a href="pants.html">Pants</a> |
+    <a href="shorts.html">Shorts</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
